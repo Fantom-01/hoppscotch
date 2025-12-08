@@ -57,6 +57,14 @@ export class PrismaService
       const connectionLimit = url.searchParams.get('connection_limit');
       const connectTimeout = url.searchParams.get('connect_timeout');
 
+      // Validate schema name: alphanumeric, underscores, max 63 chars
+      const schemaRegex = /^[a-zA-Z_][a-zA-Z0-9_]{0,62}$/;
+      if (!schemaRegex.test(schema)) {
+        throw new Error(
+          `Invalid schema name: "${schema}". Schema must start with a letter or underscore, contain only alphanumeric characters and underscores, and be at most 63 characters long.`,
+        );
+      }
+
       url.searchParams.delete('schema');
       url.searchParams.delete('connection_limit');
       url.searchParams.delete('connect_timeout');
