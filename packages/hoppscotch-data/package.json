@@ -17,11 +17,17 @@
     "prepare": "pnpm run build:code && pnpm run build:decl",
     "do-typecheck": "pnpm exec tsc --noEmit"
   },
-  "exports": {
+    "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/hoppscotch-data.js",
-      "require": "./dist/hoppscotch-data.cjs"
+      "require": "./dist/hoppscotch-data.cjs",
+      "default": "./dist/hoppscotch-data.js"
+    },
+    "./importers/*": {
+      "types": "./src/importers/*.ts",
+      "import": "./src/importers/*.ts",
+      "default": "./src/importers/*.ts"
     }
   },
   "repository": {
@@ -47,6 +53,9 @@
     "parser-ts": "0.7.0",
     "uuid": "13.0.0",
     "verzod": "0.4.0",
-    "zod": "3.25.32"
+    "zod": "3.25.32",
+    "openapi-types": "12.1.3",
+    "js-yaml": "4.1.1",
+    "@faker-js/faker": "10.2.0"
   }
 }

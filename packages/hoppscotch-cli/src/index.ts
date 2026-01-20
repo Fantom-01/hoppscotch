@@ -4,6 +4,7 @@ import * as E from "fp-ts/Either";
 
 import { version } from "../package.json";
 import { test } from "./commands/test";
+import { syncCmd } from "./commands/sync";
 import { handleError } from "./handlers/error";
 
 const accent = chalk.greenBright;
@@ -46,6 +47,8 @@ program.exitOverride().configureOutput({
 /**
  * * CLI Commands
  */
+program.addCommand(syncCmd);
+
 program
   .command("test")
   .argument(

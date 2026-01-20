@@ -1,10 +1,10 @@
 import { defineVersion, entityReference } from "verzod"
 import { z } from "zod"
 import { HoppRESTResponseOriginalRequest } from "../original-request"
-import { StatusCodes } from "../../utils/statusCodes"
+import { statusCodes } from "../../utils/statusCodes"
 
 export const ValidCodes = z.union(
-  Object.keys(StatusCodes).map((code) => z.literal(parseInt(code))) as [
+  Object.keys(statusCodes).map((code) => z.literal(parseInt(code))) as [
     z.ZodLiteral<number>,
     z.ZodLiteral<number>,
     ...z.ZodLiteral<number>[]

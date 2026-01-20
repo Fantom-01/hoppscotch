@@ -113,7 +113,7 @@ export default defineConfig({
           routes,
           nuxtStyle: true,
           allowRobots: true,
-          dest: ".sitemap-gen",
+          // dest: ".sitemap-gen",
           hostname: ENV.VITE_BASE_URL,
         })
       },
@@ -231,7 +231,7 @@ export default defineConfig({
         maximumFileSizeToCacheInBytes: 15728640, // 15 MB
         navigateFallbackDenylist: [
           /robots.txt/,
-          /sitemap.xml/,
+          // /sitemap.xml/,
           /discord/,
           /telegram/,
           /beta/,
@@ -250,14 +250,17 @@ export default defineConfig({
         families: [
           {
             name: "Inter Variable",
+            // @ts-expect-error
             variables: ["variable-full"],
           },
           {
             name: "Material Symbols Rounded Variable",
+            // @ts-expect-error
             variables: ["variable-full"],
           },
           {
             name: "Roboto Mono Variable",
+            // @ts-expect-error
             variables: ["variable-full"],
           },
         ],

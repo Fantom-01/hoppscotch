@@ -515,6 +515,9 @@ importers:
       '@codemirror/view':
         specifier: 6.38.8
         version: 6.38.8
+      '@faker-js/faker':
+        specifier: 10.2.0
+        version: 10.2.0
       '@guolao/vue-monaco-editor':
         specifier: 1.6.0
         version: 1.6.0(monaco-editor@0.55.1)(vue@3.5.26(typescript@5.9.3))
@@ -969,6 +972,12 @@ importers:
 
   packages/hoppscotch-data:
     dependencies:
+      '@apidevtools/swagger-parser':
+        specifier: 12.1.0
+        version: 12.1.0(openapi-types@12.1.3)
+      '@faker-js/faker':
+        specifier: 10.2.0
+        version: 10.2.0
       fp-ts:
         specifier: 2.16.11
         version: 2.16.11
@@ -978,9 +987,15 @@ importers:
       jose:
         specifier: 6.1.3
         version: 6.1.3
+      js-yaml:
+        specifier: 4.1.1
+        version: 4.1.1
       lodash:
         specifier: 4.17.21
         version: 4.17.21
+      openapi-types:
+        specifier: 12.1.3
+        version: 12.1.3
       parser-ts:
         specifier: 0.7.0
         version: 0.7.0(fp-ts@2.16.11)
@@ -1525,7 +1540,7 @@ importers:
         version: 3.2.0(graphql@16.12.0)
       '@hoppscotch/ui':
         specifier: 0.2.5
-        version: 0.2.5(eslint@9.39.2(jiti@2.6.1))(terser@5.44.1)(typescript@5.9.3)(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(sass@1.97.0)(terser@5.44.1)(yaml@2.8.2))(vue@3.5.26(typescript@5.9.3))
+        version: 0.2.5(eslint@9.39.2(jiti@2.6.1))(terser@5.44.1)(typescript@5.9.3)(vite@7.3.0(@types/node@24.10.1)(jiti@2.6.1)(sass@1.97.0)(terser@5.44.1)(yaml@2.8.2))(vue@3.5.26(typescript@5.9.3))
       '@hoppscotch/vue-toasted':
         specifier: 0.1.0
         version: 0.1.0(vue@3.5.26(typescript@5.9.3))
@@ -1576,13 +1591,13 @@ importers:
         version: 7.8.2
       tailwindcss:
         specifier: 3.4.16
-        version: 3.4.16(ts-node@10.9.2(@types/node@25.0.3)(typescript@5.9.3))
+        version: 3.4.16(ts-node@10.9.2(@types/node@24.10.1)(typescript@5.9.3))
       tippy.js:
         specifier: 6.3.7
         version: 6.3.7
       ts-node-dev:
         specifier: 2.0.0
-        version: 2.0.0(@types/node@25.0.3)(typescript@5.9.3)
+        version: 2.0.0(@types/node@24.10.1)(typescript@5.9.3)
       unplugin-icons:
         specifier: 22.5.0
         version: 22.5.0(@vue/compiler-sfc@3.5.26)(svelte@3.59.2)(vue-template-compiler@2.7.16)
@@ -1604,7 +1619,7 @@ importers:
     devDependencies:
       '@graphql-codegen/cli':
         specifier: 6.1.0
-        version: 6.1.0(@parcel/watcher@2.5.1)(@types/node@25.0.3)(graphql@16.12.0)(typescript@5.9.3)
+        version: 6.1.0(@parcel/watcher@2.5.1)(@types/node@24.10.1)(graphql@16.12.0)(typescript@5.9.3)
       '@graphql-codegen/client-preset':
         specifier: 5.2.2
         version: 5.2.2(graphql@16.12.0)
@@ -1640,7 +1655,7 @@ importers:
         version: 4.17.12
       '@vitejs/plugin-vue':
         specifier: 6.0.3
-        version: 6.0.3(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(sass@1.97.0)(terser@5.44.1)(yaml@2.8.2))(vue@3.5.26(typescript@5.9.3))
+        version: 6.0.3(vite@7.3.0(@types/node@24.10.1)(jiti@2.6.1)(sass@1.97.0)(terser@5.44.1)(yaml@2.8.2))(vue@3.5.26(typescript@5.9.3))
       '@vue/compiler-sfc':
         specifier: 3.5.26
         version: 3.5.26
@@ -1664,22 +1679,22 @@ importers:
         version: 1.97.0
       ts-node:
         specifier: 10.9.2
-        version: 10.9.2(@types/node@25.0.3)(typescript@5.9.3)
+        version: 10.9.2(@types/node@24.10.1)(typescript@5.9.3)
       typescript:
         specifier: 5.9.3
         version: 5.9.3
       unplugin-fonts:
         specifier: 1.4.0
-        version: 1.4.0(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(sass@1.97.0)(terser@5.44.1)(yaml@2.8.2))
+        version: 1.4.0(vite@7.3.0(@types/node@24.10.1)(jiti@2.6.1)(sass@1.97.0)(terser@5.44.1)(yaml@2.8.2))
       vite:
         specifier: 7.3.0
-        version: 7.3.0(@types/node@25.0.3)(jiti@2.6.1)(sass@1.97.0)(terser@5.44.1)(yaml@2.8.2)
+        version: 7.3.0(@types/node@24.10.1)(jiti@2.6.1)(sass@1.97.0)(terser@5.44.1)(yaml@2.8.2)
       vite-plugin-pages:
         specifier: 0.33.2
-        version: 0.33.2(@vue/compiler-sfc@3.5.26)(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(sass@1.97.0)(terser@5.44.1)(yaml@2.8.2))(vue-router@4.6.4(vue@3.5.26(typescript@5.9.3)))
+        version: 0.33.2(@vue/compiler-sfc@3.5.26)(vite@7.3.0(@types/node@24.10.1)(jiti@2.6.1)(sass@1.97.0)(terser@5.44.1)(yaml@2.8.2))(vue-router@4.6.4(vue@3.5.26(typescript@5.9.3)))
       vite-plugin-vue-layouts:
         specifier: 0.11.0
-        version: 0.11.0(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(sass@1.97.0)(terser@5.44.1)(yaml@2.8.2))(vue-router@4.6.4(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))
+        version: 0.11.0(vite@7.3.0(@types/node@24.10.1)(jiti@2.6.1)(sass@1.97.0)(terser@5.44.1)(yaml@2.8.2))(vue-router@4.6.4(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))
       vue-tsc:
         specifier: 2.1.6
         version: 2.1.6(typescript@5.9.3)
@@ -3440,6 +3455,10 @@ packages:
 
   '@exodus/schemasafe@1.3.0':
     resolution: {integrity: sha512-5Aap/GaRupgNx/feGBwLLTVv8OQFfv3pq2lPRzPg9R+IOBnDgghTGW7l7EuVXOvg5cc/xSAlRW8rBrjIC3Nvqw==}
+
+  '@faker-js/faker@10.2.0':
+    resolution: {integrity: sha512-rTXwAsIxpCqzUnZvrxVh3L0QA0NzToqWBLAhV+zDV3MIIwiQhAZHMdPCIaj5n/yADu/tyk12wIPgL6YHGXJP+g==}
+    engines: {node: ^20.19.0 || ^22.13.0 || ^23.5.0 || >=24.0.0, npm: '>=10'}
 
   '@faker-js/faker@5.5.3':
     resolution: {integrity: sha512-R11tGE6yIFwqpaIqcfkcg7AICXzFg14+5h5v0TfF/9+RMDL6jhzCy/pxHVOfbALGdtVYdt6JdR21tuxEgl34dw==}
@@ -12821,6 +12840,7 @@ packages:
   vue-i18n@11.2.2:
     resolution: {integrity: sha512-ULIKZyRluUPRCZmihVgUvpq8hJTtOqnbGZuv4Lz+byEKZq4mU0g92og414l6f/4ju+L5mORsiUuEPYrAuX2NJg==}
     engines: {node: '>= 16'}
+    deprecated: This version is NOT deprecated. Previous deprecation was a mistake.
     peerDependencies:
       vue: 3.5.26
 
@@ -12949,6 +12969,7 @@ packages:
   whatwg-encoding@2.0.0:
     resolution: {integrity: sha512-p41ogyeMUrw3jWclHWTQg1k05DSVXPLcVxRTYsXUk+ZooOCZLcoYgPZ/HL/D/N+uQPOtcp1me1WhBEaX02mhWg==}
     engines: {node: '>=12'}
+    deprecated: Use @exodus/bytes instead for a more spec-conformant and faster implementation
 
   whatwg-encoding@3.1.1:
     resolution: {integrity: sha512-6qN4hJdMwfYBtE3YBTTHhoeuUrDBPZmbQaxWAqSALV/MeEnR5z1xd8UKud2RAkFoPkmB+hli1TZSnyi84xz1vQ==}
@@ -15394,6 +15415,8 @@ snapshots:
 
   '@exodus/schemasafe@1.3.0': {}
 
+  '@faker-js/faker@10.2.0': {}
+
   '@faker-js/faker@5.5.3': {}
 
   '@fastify/busboy@3.2.0': {}
@@ -16485,30 +16508,6 @@ snapshots:
       lodash-es: 4.17.22
       path: 0.12.7
       vite-plugin-eslint: 1.8.1(eslint@9.39.2(jiti@2.6.1))(vite@7.3.0(@types/node@24.10.1)(jiti@2.6.1)(sass@1.97.0)(terser@5.44.1)(yaml@2.8.2))
-      vue: 3.5.26(typescript@5.9.3)
-      vue-promise-modals: 0.1.0(typescript@5.9.3)
-      vuedraggable-es: 4.1.1(vue@3.5.26(typescript@5.9.3))
-    transitivePeerDependencies:
-      - '@vue/composition-api'
-      - eslint
-      - terser
-      - typescript
-      - vite
-
-  '@hoppscotch/ui@0.2.5(eslint@9.39.2(jiti@2.6.1))(terser@5.44.1)(typescript@5.9.3)(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(sass@1.97.0)(terser@5.44.1)(yaml@2.8.2))(vue@3.5.26(typescript@5.9.3))':
-    dependencies:
-      '@boringer-avatars/vue3': 0.2.1(vue@3.5.26(typescript@5.9.3))
-      '@fontsource-variable/inter': 5.2.8
-      '@fontsource-variable/material-symbols-rounded': 5.2.24
-      '@fontsource-variable/roboto-mono': 5.2.8
-      '@hoppscotch/vue-sonner': 1.2.3
-      '@hoppscotch/vue-toasted': 0.1.0(vue@3.5.26(typescript@5.9.3))
-      '@vitejs/plugin-legacy': 2.3.0(terser@5.44.1)(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(sass@1.97.0)(terser@5.44.1)(yaml@2.8.2))
-      '@vueuse/core': 8.9.4(vue@3.5.26(typescript@5.9.3))
-      fp-ts: 2.16.11
-      lodash-es: 4.17.22
-      path: 0.12.7
-      vite-plugin-eslint: 1.8.1(eslint@9.39.2(jiti@2.6.1))(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(sass@1.97.0)(terser@5.44.1)(yaml@2.8.2))
       vue: 3.5.26(typescript@5.9.3)
       vue-promise-modals: 0.1.0(typescript@5.9.3)
       vuedraggable-es: 4.1.1(vue@3.5.26(typescript@5.9.3))
@@ -19335,14 +19334,6 @@ snapshots:
       magic-string: 0.30.21
     optionalDependencies:
       vite: 7.3.0(@types/node@24.10.1)(jiti@2.6.1)(sass@1.97.0)(terser@5.44.1)(yaml@2.8.2)
-
-  '@vitest/mocker@4.0.16(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(sass@1.97.0)(terser@5.44.1)(yaml@2.8.2))':
-    dependencies:
-      '@vitest/spy': 4.0.16
-      estree-walker: 3.0.3
-      magic-string: 0.30.21
-    optionalDependencies:
-      vite: 7.3.0(@types/node@25.0.3)(jiti@2.6.1)(sass@1.97.0)(terser@5.44.1)(yaml@2.8.2)
 
   '@vitest/pretty-format@4.0.16':
     dependencies:
@@ -26651,7 +26642,7 @@ snapshots:
 
   ts-log@2.2.7: {}
 
-  ts-node-dev@2.0.0(@types/node@25.0.3)(typescript@5.9.3):
+  ts-node-dev@2.0.0(@types/node@24.10.1)(typescript@5.9.3):
     dependencies:
       chokidar: 3.6.0
       dynamic-dedupe: 0.3.0
@@ -26661,7 +26652,7 @@ snapshots:
       rimraf: 2.7.1
       source-map-support: 0.5.21
       tree-kill: 1.2.2
-      ts-node: 10.9.2(@types/node@25.0.3)(typescript@5.9.3)
+      ts-node: 10.9.2(@types/node@24.10.1)(typescript@5.9.3)
       tsconfig: 7.0.0
       typescript: 5.9.3
     transitivePeerDependencies:
@@ -26686,7 +26677,6 @@ snapshots:
       typescript: 5.9.3
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
-    optional: true
 
   ts-node@10.9.2(@types/node@25.0.3)(typescript@5.9.3):
     dependencies:
@@ -27181,14 +27171,6 @@ snapshots:
       rollup: 2.79.2
       vite: 7.3.0(@types/node@24.10.1)(jiti@2.6.1)(sass@1.97.0)(terser@5.44.1)(yaml@2.8.2)
 
-  vite-plugin-eslint@1.8.1(eslint@9.39.2(jiti@2.6.1))(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(sass@1.97.0)(terser@5.44.1)(yaml@2.8.2)):
-    dependencies:
-      '@rollup/pluginutils': 4.2.1
-      '@types/eslint': 8.56.12
-      eslint: 9.39.2(jiti@2.6.1)
-      rollup: 2.79.2
-      vite: 7.3.0(@types/node@25.0.3)(jiti@2.6.1)(sass@1.97.0)(terser@5.44.1)(yaml@2.8.2)
-
   vite-plugin-fonts@0.7.0(vite@7.3.0(@types/node@24.10.1)(jiti@2.6.1)(sass@1.97.0)(terser@5.44.1)(yaml@2.8.2)):
     dependencies:
       fast-glob: 3.3.3
@@ -27424,7 +27406,7 @@ snapshots:
   vitest@4.0.16(@types/node@25.0.3)(jiti@2.6.1)(jsdom@27.3.0)(sass@1.97.0)(terser@5.44.1)(yaml@2.8.2):
     dependencies:
       '@vitest/expect': 4.0.16
-      '@vitest/mocker': 4.0.16(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(sass@1.97.0)(terser@5.44.1)(yaml@2.8.2))
+      '@vitest/mocker': 4.0.16(vite@7.3.0(@types/node@24.10.1)(jiti@2.6.1)(sass@1.97.0)(terser@5.44.1)(yaml@2.8.2))
       '@vitest/pretty-format': 4.0.16
       '@vitest/runner': 4.0.16
       '@vitest/snapshot': 4.0.16
