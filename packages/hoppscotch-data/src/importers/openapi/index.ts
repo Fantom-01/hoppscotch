@@ -34,6 +34,7 @@ import { cloneDeep } from "lodash"
 import { getStatusCodeReasonPhrase } from "../../utils/statusCodes"
 // import { isNumeric } from "../../utils/number" // Check if this exists or need to port/inline
 import { generateMockFromSchema } from "../helpers/mock-generator"
+import SwaggerParser from "@apidevtools/swagger-parser"
 
 // Simple inline implementation if utils/number doesn't exist yet in data
 const isNumericLocal = (value: any): boolean => {
@@ -53,21 +54,44 @@ export const IMPORTER_INVALID_FILE_FORMAT = "importer/invalid_file_format" as co
 // So this logic here is primarily for the Web UI consumption via `hoppOpenAPIImporter`.
 // The CLI calls `convertOpenApiDocsToHopp` directly.
 
-const worker = new Worker(
-  new URL("../workers/openapi-import-worker.ts", import.meta.url),
-  {
-    type: "module",
+// Previous implementation
+// const worker = new Worker(
+//   new URL("../workers/openapi-import-worker.ts", import.meta.url),
+//   {
+//     type: "module",
+//   }
+// )
+
+let worker: Worker | null = null;
+
+const getWorker = () => {
+  // Only try to initialize if we are in a browser and it hasn't been created yet
+  if (typeof window !== "undefined" && !worker) {
+    worker = new Worker(
+      new URL("../workers/openapi-import-worker.ts", import.meta.url),
+      { type: "module" }
+    );
   }
-)
+  return worker;
+};
 
 export const validateDocs = (docs: any): Promise<OpenAPI.Document> => {
+  const activeWorker = getWorker();
+  
+  if (!activeWorker) {
+    // CLI/Node logic: Since the previous author mentioned CLI uses SwaggerParser directly,
+    // we can return the docs as-is here because the CLI handles validation 
+    // in its own 'sync' command logic.
+    return Promise.resolve(docs as OpenAPI.Document);
+  }
+
   return new Promise((resolve, reject) => {
-    worker.postMessage({
+    activeWorker.postMessage({
       type: "validate",
       docs,
     })
 
-    worker.onmessage = (event) => {
+    activeWorker.onmessage = (event) => {
       if (event.data.type === "VALIDATION_RESULT") {
         if (E.isLeft(event.data.data)) {
           reject("COULD_NOT_VALIDATE")
@@ -79,14 +103,29 @@ export const validateDocs = (docs: any): Promise<OpenAPI.Document> => {
   })
 }
 
-export const dereferenceDocs = (docs: any): Promise<OpenAPI.Document> => {
+export const dereferenceDocs = async (docs: any): Promise<OpenAPI.Document> => {
+  const activeWorker = getWorker();
+  
+  if (!activeWorker) {
+    // CLI/Node Fallback: Use SwaggerParser directly
+    try {
+      // We clone to avoid mutating the original object during dereferencing
+      const clonedDocs = cloneDeep(docs);
+      const dereferenced = await SwaggerParser.dereference(clonedDocs as any);
+      return dereferenced as OpenAPI.Document;
+    } catch (error) {
+      console.error("CLI Dereference Error:", error);
+      return docs as OpenAPI.Document;
+    }
+  }
+
   return new Promise((resolve, reject) => {
-    worker.postMessage({
+    activeWorker.postMessage({
       type: "dereference",
       docs,
     })
 
-    worker.onmessage = (event) => {
+    activeWorker.onmessage = (event) => {
       if (event.data.type === "DEREFERENCE_RESULT") {
         if (E.isLeft(event.data.data)) {
           reject("COULD_NOT_DEREFERENCE")
@@ -385,6 +424,8 @@ const parseOpenAPIHeaders = (params: OpenAPIParamsType[]): HoppRESTHeader[] =>
 // TODO: Implement parsing V2 body if needed, currently focusing on V3/Generic structure
 // For now simplifying to allow shared implementation, copied essential parts
 
+// SIGH V2 implemented now
+
 const parseOpenAPIV3BodyFormData = (
   contentType: "multipart/form-data" | "application/x-www-form-urlencoded",
   mediaObj: OpenAPIV3.MediaTypeObject | OpenAPIV31.MediaTypeObject
@@ -449,6 +490,7 @@ const parseOpenAPIV3Body = (
 
   // Use the recursive mock generator
   if (media.schema) {
+    console.log("DEBUG: Schema for mock:", JSON.stringify(media.schema, null, 2));
       const mockData = generateMockFromSchema(media.schema as any)
       return {
           contentType: contentType as any,
@@ -461,8 +503,23 @@ const parseOpenAPIV3Body = (
 }
 
 const parseOpenAPIV2Body = (op: OpenAPIV2.OperationObject): HoppRESTReqBody => {
-  // Simplified version call
-   return { contentType: null, body: null } 
+  // Find the parameter that is the 'body'
+  const bodyParam = op.parameters?.find(
+    (p): p is OpenAPIV2.InBodyParameterObject => 
+      !('$ref' in p) && p.in === 'body'
+  );
+
+  if (bodyParam?.schema) {
+    console.log("DEBUG: v2 Schema found for:", op.operationId);
+    const mockData = generateMockFromSchema(bodyParam.schema);
+    
+    return {
+      contentType: "application/json",
+      body: typeof mockData === "string" ? mockData : JSON.stringify(mockData, null, 2)
+    };
+  }
+
+  return { contentType: null, body: null };
 }
 
 const isOpenAPIV3Operation = (
@@ -619,7 +676,10 @@ export const convertOpenApiDocsToHopp = (
     }
   }
 
+  console.log("ENTERING CONVERSION: Total docs found:", docs.length);
+
   const collections = docs.map((doc) => {
+    console.log("PROCESSING DOC:", doc.info.title, "VERSION:", (doc as any).openapi || (doc as any).swagger);
     const name = doc.info.title
     const description = doc.info.description ?? null
 

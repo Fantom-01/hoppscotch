@@ -1,0 +1,1908 @@
+[
+  {
+    "v": 11,
+    "name": "Swagger Petstore",
+    "folders": [
+      {
+        "v": 11,
+        "name": "pet",
+        "description": "Everything about your Pets",
+        "requests": [
+          {
+            "v": "17",
+            "_ref_id": "req_mkqvrrhv_2b92f3eb-86ac-4a16-a24a-232acde00b12",
+            "name": "uploadFile",
+            "description": "",
+            "method": "POST",
+            "endpoint": "petstore.swagger.io/v2/pet/<<petId>>/uploadImage",
+            "params": [],
+            "headers": [],
+            "auth": {
+              "authType": "none",
+              "authActive": true
+            },
+            "body": {
+              "contentType": null,
+              "body": null
+            },
+            "preRequestScript": "",
+            "testScript": "pw.expect(response.status).toBe(200);",
+            "requestVariables": [
+              {
+                "key": "petId",
+                "value": "",
+                "active": true
+              }
+            ],
+            "responses": {
+              "successful operation": {
+                "name": "successful operation",
+                "status": "OK",
+                "code": 200,
+                "headers": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "description": "",
+                    "active": true
+                  }
+                ],
+                "body": "",
+                "originalRequest": {
+                  "v": "6",
+                  "name": "uploadFile",
+                  "auth": {
+                    "authType": "none",
+                    "authActive": true
+                  },
+                  "body": {
+                    "contentType": null,
+                    "body": null
+                  },
+                  "endpoint": "petstore.swagger.io/v2/pet/<<petId>>/uploadImage",
+                  "params": [],
+                  "headers": [],
+                  "method": "POST",
+                  "requestVariables": [
+                    {
+                      "key": "petId",
+                      "value": "",
+                      "active": true
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "v": "17",
+            "_ref_id": "req_mkqvrris_e84ab56a-413d-4c4e-acef-539afd409bde",
+            "name": "addPet",
+            "description": "",
+            "method": "POST",
+            "endpoint": "petstore.swagger.io/v2/pet",
+            "params": [],
+            "headers": [],
+            "auth": {
+              "authType": "none",
+              "authActive": true
+            },
+            "body": {
+              "contentType": "application/json",
+              "body": "{\n  \"id\": 73,\n  \"category\": {\n    \"id\": 69,\n    \"name\": \"produce\"\n  },\n  \"name\": \"expansion\",\n  \"photoUrls\": [\n    \"bathrobe\"\n  ],\n  \"tags\": [\n    {\n      \"id\": 61,\n      \"name\": \"design\"\n    }\n  ],\n  \"status\": \"available\"\n}"
+            },
+            "preRequestScript": "",
+            "testScript": "pw.expect(response.status).toBe(200);",
+            "requestVariables": [],
+            "responses": {
+              "Invalid input": {
+                "name": "Invalid input",
+                "status": "Method Not Allowed",
+                "code": 405,
+                "headers": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "description": "",
+                    "active": true
+                  }
+                ],
+                "body": "",
+                "originalRequest": {
+                  "v": "6",
+                  "name": "addPet",
+                  "auth": {
+                    "authType": "none",
+                    "authActive": true
+                  },
+                  "body": {
+                    "contentType": "application/json",
+                    "body": "{\n  \"id\": 1,\n  \"category\": {\n    \"id\": 9,\n    \"name\": \"inspection\"\n  },\n  \"name\": \"guidance\",\n  \"photoUrls\": [\n    \"asset\"\n  ],\n  \"tags\": [\n    {\n      \"id\": 86,\n      \"name\": \"mouser\"\n    }\n  ],\n  \"status\": \"available\"\n}"
+                  },
+                  "endpoint": "petstore.swagger.io/v2/pet",
+                  "params": [],
+                  "headers": [],
+                  "method": "POST",
+                  "requestVariables": []
+                }
+              }
+            }
+          },
+          {
+            "v": "17",
+            "_ref_id": "req_mkqvrrkq_2e497f80-c5a1-4bfe-ae7d-9d74b30ce151",
+            "name": "updatePet",
+            "description": "",
+            "method": "PUT",
+            "endpoint": "petstore.swagger.io/v2/pet",
+            "params": [],
+            "headers": [],
+            "auth": {
+              "authType": "none",
+              "authActive": true
+            },
+            "body": {
+              "contentType": "application/json",
+              "body": "{\n  \"id\": 98,\n  \"category\": {\n    \"id\": 96,\n    \"name\": \"convection\"\n  },\n  \"name\": \"rationale\",\n  \"photoUrls\": [\n    \"knuckle\"\n  ],\n  \"tags\": [\n    {\n      \"id\": 85,\n      \"name\": \"doing\"\n    }\n  ],\n  \"status\": \"sold\"\n}"
+            },
+            "preRequestScript": "",
+            "testScript": "pw.expect(response.status).toBe(200);",
+            "requestVariables": [],
+            "responses": {
+              "Invalid ID supplied": {
+                "name": "Invalid ID supplied",
+                "status": "Bad Request",
+                "code": 400,
+                "headers": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "description": "",
+                    "active": true
+                  }
+                ],
+                "body": "",
+                "originalRequest": {
+                  "v": "6",
+                  "name": "updatePet",
+                  "auth": {
+                    "authType": "none",
+                    "authActive": true
+                  },
+                  "body": {
+                    "contentType": "application/json",
+                    "body": "{\n  \"id\": 66,\n  \"category\": {\n    \"id\": 24,\n    \"name\": \"husband\"\n  },\n  \"name\": \"draft\",\n  \"photoUrls\": [\n    \"in-joke\"\n  ],\n  \"tags\": [\n    {\n      \"id\": 55,\n      \"name\": \"tail\"\n    }\n  ],\n  \"status\": \"sold\"\n}"
+                  },
+                  "endpoint": "petstore.swagger.io/v2/pet",
+                  "params": [],
+                  "headers": [],
+                  "method": "PUT",
+                  "requestVariables": []
+                }
+              },
+              "Pet not found": {
+                "name": "Pet not found",
+                "status": "Not Found",
+                "code": 404,
+                "headers": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "description": "",
+                    "active": true
+                  }
+                ],
+                "body": "",
+                "originalRequest": {
+                  "v": "6",
+                  "name": "updatePet",
+                  "auth": {
+                    "authType": "none",
+                    "authActive": true
+                  },
+                  "body": {
+                    "contentType": "application/json",
+                    "body": "{\n  \"id\": 66,\n  \"category\": {\n    \"id\": 24,\n    \"name\": \"husband\"\n  },\n  \"name\": \"draft\",\n  \"photoUrls\": [\n    \"in-joke\"\n  ],\n  \"tags\": [\n    {\n      \"id\": 55,\n      \"name\": \"tail\"\n    }\n  ],\n  \"status\": \"sold\"\n}"
+                  },
+                  "endpoint": "petstore.swagger.io/v2/pet",
+                  "params": [],
+                  "headers": [],
+                  "method": "PUT",
+                  "requestVariables": []
+                }
+              },
+              "Validation exception": {
+                "name": "Validation exception",
+                "status": "Method Not Allowed",
+                "code": 405,
+                "headers": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "description": "",
+                    "active": true
+                  }
+                ],
+                "body": "",
+                "originalRequest": {
+                  "v": "6",
+                  "name": "updatePet",
+                  "auth": {
+                    "authType": "none",
+                    "authActive": true
+                  },
+                  "body": {
+                    "contentType": "application/json",
+                    "body": "{\n  \"id\": 66,\n  \"category\": {\n    \"id\": 24,\n    \"name\": \"husband\"\n  },\n  \"name\": \"draft\",\n  \"photoUrls\": [\n    \"in-joke\"\n  ],\n  \"tags\": [\n    {\n      \"id\": 55,\n      \"name\": \"tail\"\n    }\n  ],\n  \"status\": \"sold\"\n}"
+                  },
+                  "endpoint": "petstore.swagger.io/v2/pet",
+                  "params": [],
+                  "headers": [],
+                  "method": "PUT",
+                  "requestVariables": []
+                }
+              }
+            }
+          },
+          {
+            "v": "17",
+            "_ref_id": "req_mkqvrrkr_f3c5121c-34e7-4afe-b3fb-1d776b8d3637",
+            "name": "findPetsByStatus",
+            "description": "Multiple status values can be provided with comma separated strings",
+            "method": "GET",
+            "endpoint": "petstore.swagger.io/v2/pet/findByStatus",
+            "params": [
+              {
+                "key": "status",
+                "value": "",
+                "active": true,
+                "description": "Status values that need to be considered for filter"
+              }
+            ],
+            "headers": [],
+            "auth": {
+              "authType": "none",
+              "authActive": true
+            },
+            "body": {
+              "contentType": null,
+              "body": null
+            },
+            "preRequestScript": "",
+            "testScript": "pw.expect(response.status).toBe(200);",
+            "requestVariables": [],
+            "responses": {
+              "successful operation": {
+                "name": "successful operation",
+                "status": "OK",
+                "code": 200,
+                "headers": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "description": "",
+                    "active": true
+                  }
+                ],
+                "body": "",
+                "originalRequest": {
+                  "v": "6",
+                  "name": "findPetsByStatus",
+                  "auth": {
+                    "authType": "none",
+                    "authActive": true
+                  },
+                  "body": {
+                    "contentType": null,
+                    "body": null
+                  },
+                  "endpoint": "petstore.swagger.io/v2/pet/findByStatus",
+                  "params": [
+                    {
+                      "key": "status",
+                      "value": "",
+                      "active": true,
+                      "description": "Status values that need to be considered for filter"
+                    }
+                  ],
+                  "headers": [],
+                  "method": "GET",
+                  "requestVariables": []
+                }
+              },
+              "Invalid status value": {
+                "name": "Invalid status value",
+                "status": "Bad Request",
+                "code": 400,
+                "headers": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "description": "",
+                    "active": true
+                  }
+                ],
+                "body": "",
+                "originalRequest": {
+                  "v": "6",
+                  "name": "findPetsByStatus",
+                  "auth": {
+                    "authType": "none",
+                    "authActive": true
+                  },
+                  "body": {
+                    "contentType": null,
+                    "body": null
+                  },
+                  "endpoint": "petstore.swagger.io/v2/pet/findByStatus",
+                  "params": [
+                    {
+                      "key": "status",
+                      "value": "",
+                      "active": true,
+                      "description": "Status values that need to be considered for filter"
+                    }
+                  ],
+                  "headers": [],
+                  "method": "GET",
+                  "requestVariables": []
+                }
+              }
+            }
+          },
+          {
+            "v": "17",
+            "_ref_id": "req_mkqvrrkr_a6ea4c7e-61d3-4999-bd12-e19877899f31",
+            "name": "findPetsByTags",
+            "description": "Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.",
+            "method": "GET",
+            "endpoint": "petstore.swagger.io/v2/pet/findByTags",
+            "params": [
+              {
+                "key": "tags",
+                "value": "",
+                "active": true,
+                "description": "Tags to filter by"
+              }
+            ],
+            "headers": [],
+            "auth": {
+              "authType": "none",
+              "authActive": true
+            },
+            "body": {
+              "contentType": null,
+              "body": null
+            },
+            "preRequestScript": "",
+            "testScript": "pw.expect(response.status).toBe(200);",
+            "requestVariables": [],
+            "responses": {
+              "successful operation": {
+                "name": "successful operation",
+                "status": "OK",
+                "code": 200,
+                "headers": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "description": "",
+                    "active": true
+                  }
+                ],
+                "body": "",
+                "originalRequest": {
+                  "v": "6",
+                  "name": "findPetsByTags",
+                  "auth": {
+                    "authType": "none",
+                    "authActive": true
+                  },
+                  "body": {
+                    "contentType": null,
+                    "body": null
+                  },
+                  "endpoint": "petstore.swagger.io/v2/pet/findByTags",
+                  "params": [
+                    {
+                      "key": "tags",
+                      "value": "",
+                      "active": true,
+                      "description": "Tags to filter by"
+                    }
+                  ],
+                  "headers": [],
+                  "method": "GET",
+                  "requestVariables": []
+                }
+              },
+              "Invalid tag value": {
+                "name": "Invalid tag value",
+                "status": "Bad Request",
+                "code": 400,
+                "headers": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "description": "",
+                    "active": true
+                  }
+                ],
+                "body": "",
+                "originalRequest": {
+                  "v": "6",
+                  "name": "findPetsByTags",
+                  "auth": {
+                    "authType": "none",
+                    "authActive": true
+                  },
+                  "body": {
+                    "contentType": null,
+                    "body": null
+                  },
+                  "endpoint": "petstore.swagger.io/v2/pet/findByTags",
+                  "params": [
+                    {
+                      "key": "tags",
+                      "value": "",
+                      "active": true,
+                      "description": "Tags to filter by"
+                    }
+                  ],
+                  "headers": [],
+                  "method": "GET",
+                  "requestVariables": []
+                }
+              }
+            }
+          },
+          {
+            "v": "17",
+            "_ref_id": "req_mkqvrrkr_8a2625a7-d67c-42ab-acfb-f3949a431dde",
+            "name": "getPetById",
+            "description": "Returns a single pet",
+            "method": "GET",
+            "endpoint": "petstore.swagger.io/v2/pet/<<petId>>",
+            "params": [],
+            "headers": [],
+            "auth": {
+              "authType": "none",
+              "authActive": true
+            },
+            "body": {
+              "contentType": null,
+              "body": null
+            },
+            "preRequestScript": "",
+            "testScript": "pw.expect(response.status).toBe(200);",
+            "requestVariables": [
+              {
+                "key": "petId",
+                "value": "",
+                "active": true
+              }
+            ],
+            "responses": {
+              "successful operation": {
+                "name": "successful operation",
+                "status": "OK",
+                "code": 200,
+                "headers": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "description": "",
+                    "active": true
+                  }
+                ],
+                "body": "",
+                "originalRequest": {
+                  "v": "6",
+                  "name": "getPetById",
+                  "auth": {
+                    "authType": "none",
+                    "authActive": true
+                  },
+                  "body": {
+                    "contentType": null,
+                    "body": null
+                  },
+                  "endpoint": "petstore.swagger.io/v2/pet/<<petId>>",
+                  "params": [],
+                  "headers": [],
+                  "method": "GET",
+                  "requestVariables": [
+                    {
+                      "key": "petId",
+                      "value": "",
+                      "active": true
+                    }
+                  ]
+                }
+              },
+              "Invalid ID supplied": {
+                "name": "Invalid ID supplied",
+                "status": "Bad Request",
+                "code": 400,
+                "headers": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "description": "",
+                    "active": true
+                  }
+                ],
+                "body": "",
+                "originalRequest": {
+                  "v": "6",
+                  "name": "getPetById",
+                  "auth": {
+                    "authType": "none",
+                    "authActive": true
+                  },
+                  "body": {
+                    "contentType": null,
+                    "body": null
+                  },
+                  "endpoint": "petstore.swagger.io/v2/pet/<<petId>>",
+                  "params": [],
+                  "headers": [],
+                  "method": "GET",
+                  "requestVariables": [
+                    {
+                      "key": "petId",
+                      "value": "",
+                      "active": true
+                    }
+                  ]
+                }
+              },
+              "Pet not found": {
+                "name": "Pet not found",
+                "status": "Not Found",
+                "code": 404,
+                "headers": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "description": "",
+                    "active": true
+                  }
+                ],
+                "body": "",
+                "originalRequest": {
+                  "v": "6",
+                  "name": "getPetById",
+                  "auth": {
+                    "authType": "none",
+                    "authActive": true
+                  },
+                  "body": {
+                    "contentType": null,
+                    "body": null
+                  },
+                  "endpoint": "petstore.swagger.io/v2/pet/<<petId>>",
+                  "params": [],
+                  "headers": [],
+                  "method": "GET",
+                  "requestVariables": [
+                    {
+                      "key": "petId",
+                      "value": "",
+                      "active": true
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "v": "17",
+            "_ref_id": "req_mkqvrrks_81220463-5e7d-4d52-819e-3044fd209e88",
+            "name": "updatePetWithForm",
+            "description": "",
+            "method": "POST",
+            "endpoint": "petstore.swagger.io/v2/pet/<<petId>>",
+            "params": [],
+            "headers": [],
+            "auth": {
+              "authType": "none",
+              "authActive": true
+            },
+            "body": {
+              "contentType": null,
+              "body": null
+            },
+            "preRequestScript": "",
+            "testScript": "pw.expect(response.status).toBe(200);",
+            "requestVariables": [
+              {
+                "key": "petId",
+                "value": "",
+                "active": true
+              }
+            ],
+            "responses": {
+              "Invalid input": {
+                "name": "Invalid input",
+                "status": "Method Not Allowed",
+                "code": 405,
+                "headers": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "description": "",
+                    "active": true
+                  }
+                ],
+                "body": "",
+                "originalRequest": {
+                  "v": "6",
+                  "name": "updatePetWithForm",
+                  "auth": {
+                    "authType": "none",
+                    "authActive": true
+                  },
+                  "body": {
+                    "contentType": null,
+                    "body": null
+                  },
+                  "endpoint": "petstore.swagger.io/v2/pet/<<petId>>",
+                  "params": [],
+                  "headers": [],
+                  "method": "POST",
+                  "requestVariables": [
+                    {
+                      "key": "petId",
+                      "value": "",
+                      "active": true
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "v": "17",
+            "_ref_id": "req_mkqvrrks_574c7e32-8ee2-49e8-b08e-b49199afcbac",
+            "name": "deletePet",
+            "description": "",
+            "method": "DELETE",
+            "endpoint": "petstore.swagger.io/v2/pet/<<petId>>",
+            "params": [],
+            "headers": [
+              {
+                "key": "api_key",
+                "value": "",
+                "active": true,
+                "description": ""
+              }
+            ],
+            "auth": {
+              "authType": "none",
+              "authActive": true
+            },
+            "body": {
+              "contentType": null,
+              "body": null
+            },
+            "preRequestScript": "",
+            "testScript": "pw.expect(response.status).toBe(200);",
+            "requestVariables": [
+              {
+                "key": "petId",
+                "value": "",
+                "active": true
+              }
+            ],
+            "responses": {
+              "Invalid ID supplied": {
+                "name": "Invalid ID supplied",
+                "status": "Bad Request",
+                "code": 400,
+                "headers": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "description": "",
+                    "active": true
+                  }
+                ],
+                "body": "",
+                "originalRequest": {
+                  "v": "6",
+                  "name": "deletePet",
+                  "auth": {
+                    "authType": "none",
+                    "authActive": true
+                  },
+                  "body": {
+                    "contentType": null,
+                    "body": null
+                  },
+                  "endpoint": "petstore.swagger.io/v2/pet/<<petId>>",
+                  "params": [],
+                  "headers": [
+                    {
+                      "key": "api_key",
+                      "value": "",
+                      "active": true,
+                      "description": ""
+                    }
+                  ],
+                  "method": "DELETE",
+                  "requestVariables": [
+                    {
+                      "key": "petId",
+                      "value": "",
+                      "active": true
+                    }
+                  ]
+                }
+              },
+              "Pet not found": {
+                "name": "Pet not found",
+                "status": "Not Found",
+                "code": 404,
+                "headers": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "description": "",
+                    "active": true
+                  }
+                ],
+                "body": "",
+                "originalRequest": {
+                  "v": "6",
+                  "name": "deletePet",
+                  "auth": {
+                    "authType": "none",
+                    "authActive": true
+                  },
+                  "body": {
+                    "contentType": null,
+                    "body": null
+                  },
+                  "endpoint": "petstore.swagger.io/v2/pet/<<petId>>",
+                  "params": [],
+                  "headers": [
+                    {
+                      "key": "api_key",
+                      "value": "",
+                      "active": true,
+                      "description": ""
+                    }
+                  ],
+                  "method": "DELETE",
+                  "requestVariables": [
+                    {
+                      "key": "petId",
+                      "value": "",
+                      "active": true
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "folders": [],
+        "auth": {
+          "authType": "inherit",
+          "authActive": true
+        },
+        "headers": [],
+        "variables": [],
+        "_ref_id": "coll_mkqvrrn0_cc9ceb5d-154c-484e-81a6-fff044d4b375"
+      },
+      {
+        "v": 11,
+        "name": "store",
+        "description": "Access to Petstore orders",
+        "requests": [
+          {
+            "v": "17",
+            "_ref_id": "req_mkqvrrks_c62eb631-dcc4-4b1b-8ddf-ca5f4e121ec3",
+            "name": "getInventory",
+            "description": "Returns a map of status codes to quantities",
+            "method": "GET",
+            "endpoint": "petstore.swagger.io/v2/store/inventory",
+            "params": [],
+            "headers": [],
+            "auth": {
+              "authType": "none",
+              "authActive": true
+            },
+            "body": {
+              "contentType": null,
+              "body": null
+            },
+            "preRequestScript": "",
+            "testScript": "pw.expect(response.status).toBe(200);",
+            "requestVariables": [],
+            "responses": {
+              "successful operation": {
+                "name": "successful operation",
+                "status": "OK",
+                "code": 200,
+                "headers": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "description": "",
+                    "active": true
+                  }
+                ],
+                "body": "",
+                "originalRequest": {
+                  "v": "6",
+                  "name": "getInventory",
+                  "auth": {
+                    "authType": "none",
+                    "authActive": true
+                  },
+                  "body": {
+                    "contentType": null,
+                    "body": null
+                  },
+                  "endpoint": "petstore.swagger.io/v2/store/inventory",
+                  "params": [],
+                  "headers": [],
+                  "method": "GET",
+                  "requestVariables": []
+                }
+              }
+            }
+          },
+          {
+            "v": "17",
+            "_ref_id": "req_mkqvrrm4_174de395-3a81-4d4e-b5b7-d5c1570c687f",
+            "name": "placeOrder",
+            "description": "",
+            "method": "POST",
+            "endpoint": "petstore.swagger.io/v2/store/order",
+            "params": [],
+            "headers": [],
+            "auth": {
+              "authType": "none",
+              "authActive": true
+            },
+            "body": {
+              "contentType": "application/json",
+              "body": "{\n  \"id\": 30,\n  \"petId\": 78,\n  \"quantity\": 27,\n  \"shipDate\": \"2026-01-23T02:01:05.011Z\",\n  \"status\": \"approved\",\n  \"complete\": true\n}"
+            },
+            "preRequestScript": "",
+            "testScript": "pw.expect(response.status).toBe(200);",
+            "requestVariables": [],
+            "responses": {
+              "successful operation": {
+                "name": "successful operation",
+                "status": "OK",
+                "code": 200,
+                "headers": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "description": "",
+                    "active": true
+                  }
+                ],
+                "body": "",
+                "originalRequest": {
+                  "v": "6",
+                  "name": "placeOrder",
+                  "auth": {
+                    "authType": "none",
+                    "authActive": true
+                  },
+                  "body": {
+                    "contentType": "application/json",
+                    "body": "{\n  \"id\": 12,\n  \"petId\": 5,\n  \"quantity\": 45,\n  \"shipDate\": \"2026-01-23T11:00:24.690Z\",\n  \"status\": \"approved\",\n  \"complete\": true\n}"
+                  },
+                  "endpoint": "petstore.swagger.io/v2/store/order",
+                  "params": [],
+                  "headers": [],
+                  "method": "POST",
+                  "requestVariables": []
+                }
+              },
+              "Invalid Order": {
+                "name": "Invalid Order",
+                "status": "Bad Request",
+                "code": 400,
+                "headers": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "description": "",
+                    "active": true
+                  }
+                ],
+                "body": "",
+                "originalRequest": {
+                  "v": "6",
+                  "name": "placeOrder",
+                  "auth": {
+                    "authType": "none",
+                    "authActive": true
+                  },
+                  "body": {
+                    "contentType": "application/json",
+                    "body": "{\n  \"id\": 12,\n  \"petId\": 5,\n  \"quantity\": 45,\n  \"shipDate\": \"2026-01-23T11:00:24.690Z\",\n  \"status\": \"approved\",\n  \"complete\": true\n}"
+                  },
+                  "endpoint": "petstore.swagger.io/v2/store/order",
+                  "params": [],
+                  "headers": [],
+                  "method": "POST",
+                  "requestVariables": []
+                }
+              }
+            }
+          },
+          {
+            "v": "17",
+            "_ref_id": "req_mkqvrrm4_5b6d9627-0f69-4933-baa9-306b88635957",
+            "name": "getOrderById",
+            "description": "For valid response try integer IDs with value >= 1 and <= 10. Other values will generated exceptions",
+            "method": "GET",
+            "endpoint": "petstore.swagger.io/v2/store/order/<<orderId>>",
+            "params": [],
+            "headers": [],
+            "auth": {
+              "authType": "none",
+              "authActive": true
+            },
+            "body": {
+              "contentType": null,
+              "body": null
+            },
+            "preRequestScript": "",
+            "testScript": "pw.expect(response.status).toBe(200);",
+            "requestVariables": [
+              {
+                "key": "orderId",
+                "value": "",
+                "active": true
+              }
+            ],
+            "responses": {
+              "successful operation": {
+                "name": "successful operation",
+                "status": "OK",
+                "code": 200,
+                "headers": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "description": "",
+                    "active": true
+                  }
+                ],
+                "body": "",
+                "originalRequest": {
+                  "v": "6",
+                  "name": "getOrderById",
+                  "auth": {
+                    "authType": "none",
+                    "authActive": true
+                  },
+                  "body": {
+                    "contentType": null,
+                    "body": null
+                  },
+                  "endpoint": "petstore.swagger.io/v2/store/order/<<orderId>>",
+                  "params": [],
+                  "headers": [],
+                  "method": "GET",
+                  "requestVariables": [
+                    {
+                      "key": "orderId",
+                      "value": "",
+                      "active": true
+                    }
+                  ]
+                }
+              },
+              "Invalid ID supplied": {
+                "name": "Invalid ID supplied",
+                "status": "Bad Request",
+                "code": 400,
+                "headers": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "description": "",
+                    "active": true
+                  }
+                ],
+                "body": "",
+                "originalRequest": {
+                  "v": "6",
+                  "name": "getOrderById",
+                  "auth": {
+                    "authType": "none",
+                    "authActive": true
+                  },
+                  "body": {
+                    "contentType": null,
+                    "body": null
+                  },
+                  "endpoint": "petstore.swagger.io/v2/store/order/<<orderId>>",
+                  "params": [],
+                  "headers": [],
+                  "method": "GET",
+                  "requestVariables": [
+                    {
+                      "key": "orderId",
+                      "value": "",
+                      "active": true
+                    }
+                  ]
+                }
+              },
+              "Order not found": {
+                "name": "Order not found",
+                "status": "Not Found",
+                "code": 404,
+                "headers": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "description": "",
+                    "active": true
+                  }
+                ],
+                "body": "",
+                "originalRequest": {
+                  "v": "6",
+                  "name": "getOrderById",
+                  "auth": {
+                    "authType": "none",
+                    "authActive": true
+                  },
+                  "body": {
+                    "contentType": null,
+                    "body": null
+                  },
+                  "endpoint": "petstore.swagger.io/v2/store/order/<<orderId>>",
+                  "params": [],
+                  "headers": [],
+                  "method": "GET",
+                  "requestVariables": [
+                    {
+                      "key": "orderId",
+                      "value": "",
+                      "active": true
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "v": "17",
+            "_ref_id": "req_mkqvrrm4_782ca43e-13fa-4661-80f0-56bbbcba292b",
+            "name": "deleteOrder",
+            "description": "For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors",
+            "method": "DELETE",
+            "endpoint": "petstore.swagger.io/v2/store/order/<<orderId>>",
+            "params": [],
+            "headers": [],
+            "auth": {
+              "authType": "none",
+              "authActive": true
+            },
+            "body": {
+              "contentType": null,
+              "body": null
+            },
+            "preRequestScript": "",
+            "testScript": "pw.expect(response.status).toBe(200);",
+            "requestVariables": [
+              {
+                "key": "orderId",
+                "value": "",
+                "active": true
+              }
+            ],
+            "responses": {
+              "Invalid ID supplied": {
+                "name": "Invalid ID supplied",
+                "status": "Bad Request",
+                "code": 400,
+                "headers": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "description": "",
+                    "active": true
+                  }
+                ],
+                "body": "",
+                "originalRequest": {
+                  "v": "6",
+                  "name": "deleteOrder",
+                  "auth": {
+                    "authType": "none",
+                    "authActive": true
+                  },
+                  "body": {
+                    "contentType": null,
+                    "body": null
+                  },
+                  "endpoint": "petstore.swagger.io/v2/store/order/<<orderId>>",
+                  "params": [],
+                  "headers": [],
+                  "method": "DELETE",
+                  "requestVariables": [
+                    {
+                      "key": "orderId",
+                      "value": "",
+                      "active": true
+                    }
+                  ]
+                }
+              },
+              "Order not found": {
+                "name": "Order not found",
+                "status": "Not Found",
+                "code": 404,
+                "headers": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "description": "",
+                    "active": true
+                  }
+                ],
+                "body": "",
+                "originalRequest": {
+                  "v": "6",
+                  "name": "deleteOrder",
+                  "auth": {
+                    "authType": "none",
+                    "authActive": true
+                  },
+                  "body": {
+                    "contentType": null,
+                    "body": null
+                  },
+                  "endpoint": "petstore.swagger.io/v2/store/order/<<orderId>>",
+                  "params": [],
+                  "headers": [],
+                  "method": "DELETE",
+                  "requestVariables": [
+                    {
+                      "key": "orderId",
+                      "value": "",
+                      "active": true
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "folders": [],
+        "auth": {
+          "authType": "inherit",
+          "authActive": true
+        },
+        "headers": [],
+        "variables": [],
+        "_ref_id": "coll_mkqvrrn1_2f16ff8e-0840-4859-a862-b50e0bf61b2c"
+      },
+      {
+        "v": 11,
+        "name": "user",
+        "description": "Operations about user",
+        "requests": [
+          {
+            "v": "17",
+            "_ref_id": "req_mkqvrrme_ff42e49d-a2e9-4bca-9211-da55a5a55ed3",
+            "name": "createUsersWithListInput",
+            "description": "",
+            "method": "POST",
+            "endpoint": "petstore.swagger.io/v2/user/createWithList",
+            "params": [],
+            "headers": [],
+            "auth": {
+              "authType": "none",
+              "authActive": true
+            },
+            "body": {
+              "contentType": "application/json",
+              "body": "[\n  {\n    \"id\": 100,\n    \"username\": \"lamp\",\n    \"firstName\": \"swing\",\n    \"lastName\": \"earth\",\n    \"email\": \"cellar\",\n    \"password\": \"lava\",\n    \"phone\": \"ignorance\",\n    \"userStatus\": 94\n  }\n]"
+            },
+            "preRequestScript": "",
+            "testScript": "pw.expect(response.status).toBe(200);",
+            "requestVariables": [],
+            "responses": {
+              "successful operation": {
+                "name": "successful operation",
+                "status": "OK",
+                "code": 200,
+                "headers": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "description": "",
+                    "active": true
+                  }
+                ],
+                "body": "",
+                "originalRequest": {
+                  "v": "6",
+                  "name": "createUsersWithListInput",
+                  "auth": {
+                    "authType": "none",
+                    "authActive": true
+                  },
+                  "body": {
+                    "contentType": "application/json",
+                    "body": "[\n  {\n    \"id\": 21,\n    \"username\": \"cope\",\n    \"firstName\": \"cemetery\",\n    \"lastName\": \"charlatan\",\n    \"email\": \"ethyl\",\n    \"password\": \"fog\",\n    \"phone\": \"platter\",\n    \"userStatus\": 99\n  }\n]"
+                  },
+                  "endpoint": "petstore.swagger.io/v2/user/createWithList",
+                  "params": [],
+                  "headers": [],
+                  "method": "POST",
+                  "requestVariables": []
+                }
+              }
+            }
+          },
+          {
+            "v": "17",
+            "_ref_id": "req_mkqvrrme_1dffa93e-605d-4c7b-b25c-db5a4510f832",
+            "name": "getUserByName",
+            "description": "",
+            "method": "GET",
+            "endpoint": "petstore.swagger.io/v2/user/<<username>>",
+            "params": [],
+            "headers": [],
+            "auth": {
+              "authType": "none",
+              "authActive": true
+            },
+            "body": {
+              "contentType": null,
+              "body": null
+            },
+            "preRequestScript": "",
+            "testScript": "pw.expect(response.status).toBe(200);",
+            "requestVariables": [
+              {
+                "key": "username",
+                "value": "",
+                "active": true
+              }
+            ],
+            "responses": {
+              "successful operation": {
+                "name": "successful operation",
+                "status": "OK",
+                "code": 200,
+                "headers": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "description": "",
+                    "active": true
+                  }
+                ],
+                "body": "",
+                "originalRequest": {
+                  "v": "6",
+                  "name": "getUserByName",
+                  "auth": {
+                    "authType": "none",
+                    "authActive": true
+                  },
+                  "body": {
+                    "contentType": null,
+                    "body": null
+                  },
+                  "endpoint": "petstore.swagger.io/v2/user/<<username>>",
+                  "params": [],
+                  "headers": [],
+                  "method": "GET",
+                  "requestVariables": [
+                    {
+                      "key": "username",
+                      "value": "",
+                      "active": true
+                    }
+                  ]
+                }
+              },
+              "Invalid username supplied": {
+                "name": "Invalid username supplied",
+                "status": "Bad Request",
+                "code": 400,
+                "headers": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "description": "",
+                    "active": true
+                  }
+                ],
+                "body": "",
+                "originalRequest": {
+                  "v": "6",
+                  "name": "getUserByName",
+                  "auth": {
+                    "authType": "none",
+                    "authActive": true
+                  },
+                  "body": {
+                    "contentType": null,
+                    "body": null
+                  },
+                  "endpoint": "petstore.swagger.io/v2/user/<<username>>",
+                  "params": [],
+                  "headers": [],
+                  "method": "GET",
+                  "requestVariables": [
+                    {
+                      "key": "username",
+                      "value": "",
+                      "active": true
+                    }
+                  ]
+                }
+              },
+              "User not found": {
+                "name": "User not found",
+                "status": "Not Found",
+                "code": 404,
+                "headers": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "description": "",
+                    "active": true
+                  }
+                ],
+                "body": "",
+                "originalRequest": {
+                  "v": "6",
+                  "name": "getUserByName",
+                  "auth": {
+                    "authType": "none",
+                    "authActive": true
+                  },
+                  "body": {
+                    "contentType": null,
+                    "body": null
+                  },
+                  "endpoint": "petstore.swagger.io/v2/user/<<username>>",
+                  "params": [],
+                  "headers": [],
+                  "method": "GET",
+                  "requestVariables": [
+                    {
+                      "key": "username",
+                      "value": "",
+                      "active": true
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "v": "17",
+            "_ref_id": "req_mkqvrrmm_8e39b409-4e6e-414f-b9bf-d9280ac50cec",
+            "name": "updateUser",
+            "description": "This can only be done by the logged in user.",
+            "method": "PUT",
+            "endpoint": "petstore.swagger.io/v2/user/<<username>>",
+            "params": [],
+            "headers": [],
+            "auth": {
+              "authType": "none",
+              "authActive": true
+            },
+            "body": {
+              "contentType": "application/json",
+              "body": "{\n  \"id\": 69,\n  \"username\": \"expansion\",\n  \"firstName\": \"hovercraft\",\n  \"lastName\": \"casement\",\n  \"email\": \"traffic\",\n  \"password\": \"priesthood\",\n  \"phone\": \"essence\",\n  \"userStatus\": 100\n}"
+            },
+            "preRequestScript": "",
+            "testScript": "pw.expect(response.status).toBe(200);",
+            "requestVariables": [
+              {
+                "key": "username",
+                "value": "",
+                "active": true
+              }
+            ],
+            "responses": {
+              "Invalid user supplied": {
+                "name": "Invalid user supplied",
+                "status": "Bad Request",
+                "code": 400,
+                "headers": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "description": "",
+                    "active": true
+                  }
+                ],
+                "body": "",
+                "originalRequest": {
+                  "v": "6",
+                  "name": "updateUser",
+                  "auth": {
+                    "authType": "none",
+                    "authActive": true
+                  },
+                  "body": {
+                    "contentType": "application/json",
+                    "body": "{\n  \"id\": 37,\n  \"username\": \"cafe\",\n  \"firstName\": \"feather\",\n  \"lastName\": \"sauerkraut\",\n  \"email\": \"request\",\n  \"password\": \"duffel\",\n  \"phone\": \"platter\",\n  \"userStatus\": 41\n}"
+                  },
+                  "endpoint": "petstore.swagger.io/v2/user/<<username>>",
+                  "params": [],
+                  "headers": [],
+                  "method": "PUT",
+                  "requestVariables": [
+                    {
+                      "key": "username",
+                      "value": "",
+                      "active": true
+                    }
+                  ]
+                }
+              },
+              "User not found": {
+                "name": "User not found",
+                "status": "Not Found",
+                "code": 404,
+                "headers": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "description": "",
+                    "active": true
+                  }
+                ],
+                "body": "",
+                "originalRequest": {
+                  "v": "6",
+                  "name": "updateUser",
+                  "auth": {
+                    "authType": "none",
+                    "authActive": true
+                  },
+                  "body": {
+                    "contentType": "application/json",
+                    "body": "{\n  \"id\": 37,\n  \"username\": \"cafe\",\n  \"firstName\": \"feather\",\n  \"lastName\": \"sauerkraut\",\n  \"email\": \"request\",\n  \"password\": \"duffel\",\n  \"phone\": \"platter\",\n  \"userStatus\": 41\n}"
+                  },
+                  "endpoint": "petstore.swagger.io/v2/user/<<username>>",
+                  "params": [],
+                  "headers": [],
+                  "method": "PUT",
+                  "requestVariables": [
+                    {
+                      "key": "username",
+                      "value": "",
+                      "active": true
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "v": "17",
+            "_ref_id": "req_mkqvrrmm_9209839d-3354-464c-9351-412c5f3b400c",
+            "name": "deleteUser",
+            "description": "This can only be done by the logged in user.",
+            "method": "DELETE",
+            "endpoint": "petstore.swagger.io/v2/user/<<username>>",
+            "params": [],
+            "headers": [],
+            "auth": {
+              "authType": "none",
+              "authActive": true
+            },
+            "body": {
+              "contentType": null,
+              "body": null
+            },
+            "preRequestScript": "",
+            "testScript": "pw.expect(response.status).toBe(200);",
+            "requestVariables": [
+              {
+                "key": "username",
+                "value": "",
+                "active": true
+              }
+            ],
+            "responses": {
+              "Invalid username supplied": {
+                "name": "Invalid username supplied",
+                "status": "Bad Request",
+                "code": 400,
+                "headers": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "description": "",
+                    "active": true
+                  }
+                ],
+                "body": "",
+                "originalRequest": {
+                  "v": "6",
+                  "name": "deleteUser",
+                  "auth": {
+                    "authType": "none",
+                    "authActive": true
+                  },
+                  "body": {
+                    "contentType": null,
+                    "body": null
+                  },
+                  "endpoint": "petstore.swagger.io/v2/user/<<username>>",
+                  "params": [],
+                  "headers": [],
+                  "method": "DELETE",
+                  "requestVariables": [
+                    {
+                      "key": "username",
+                      "value": "",
+                      "active": true
+                    }
+                  ]
+                }
+              },
+              "User not found": {
+                "name": "User not found",
+                "status": "Not Found",
+                "code": 404,
+                "headers": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "description": "",
+                    "active": true
+                  }
+                ],
+                "body": "",
+                "originalRequest": {
+                  "v": "6",
+                  "name": "deleteUser",
+                  "auth": {
+                    "authType": "none",
+                    "authActive": true
+                  },
+                  "body": {
+                    "contentType": null,
+                    "body": null
+                  },
+                  "endpoint": "petstore.swagger.io/v2/user/<<username>>",
+                  "params": [],
+                  "headers": [],
+                  "method": "DELETE",
+                  "requestVariables": [
+                    {
+                      "key": "username",
+                      "value": "",
+                      "active": true
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "v": "17",
+            "_ref_id": "req_mkqvrrmm_db081429-2367-4641-8151-a5ba54f786ca",
+            "name": "loginUser",
+            "description": "",
+            "method": "GET",
+            "endpoint": "petstore.swagger.io/v2/user/login",
+            "params": [
+              {
+                "key": "username",
+                "value": "",
+                "active": true,
+                "description": "The user name for login"
+              },
+              {
+                "key": "password",
+                "value": "",
+                "active": true,
+                "description": "The password for login in clear text"
+              }
+            ],
+            "headers": [],
+            "auth": {
+              "authType": "none",
+              "authActive": true
+            },
+            "body": {
+              "contentType": null,
+              "body": null
+            },
+            "preRequestScript": "",
+            "testScript": "pw.expect(response.status).toBe(200);",
+            "requestVariables": [],
+            "responses": {
+              "successful operation": {
+                "name": "successful operation",
+                "status": "OK",
+                "code": 200,
+                "headers": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "description": "",
+                    "active": true
+                  }
+                ],
+                "body": "",
+                "originalRequest": {
+                  "v": "6",
+                  "name": "loginUser",
+                  "auth": {
+                    "authType": "none",
+                    "authActive": true
+                  },
+                  "body": {
+                    "contentType": null,
+                    "body": null
+                  },
+                  "endpoint": "petstore.swagger.io/v2/user/login",
+                  "params": [
+                    {
+                      "key": "username",
+                      "value": "",
+                      "active": true,
+                      "description": "The user name for login"
+                    },
+                    {
+                      "key": "password",
+                      "value": "",
+                      "active": true,
+                      "description": "The password for login in clear text"
+                    }
+                  ],
+                  "headers": [],
+                  "method": "GET",
+                  "requestVariables": []
+                }
+              },
+              "Invalid username/password supplied": {
+                "name": "Invalid username/password supplied",
+                "status": "Bad Request",
+                "code": 400,
+                "headers": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "description": "",
+                    "active": true
+                  }
+                ],
+                "body": "",
+                "originalRequest": {
+                  "v": "6",
+                  "name": "loginUser",
+                  "auth": {
+                    "authType": "none",
+                    "authActive": true
+                  },
+                  "body": {
+                    "contentType": null,
+                    "body": null
+                  },
+                  "endpoint": "petstore.swagger.io/v2/user/login",
+                  "params": [
+                    {
+                      "key": "username",
+                      "value": "",
+                      "active": true,
+                      "description": "The user name for login"
+                    },
+                    {
+                      "key": "password",
+                      "value": "",
+                      "active": true,
+                      "description": "The password for login in clear text"
+                    }
+                  ],
+                  "headers": [],
+                  "method": "GET",
+                  "requestVariables": []
+                }
+              }
+            }
+          },
+          {
+            "v": "17",
+            "_ref_id": "req_mkqvrrmm_2f25f723-43e5-4ac4-93fc-e1450370fad3",
+            "name": "logoutUser",
+            "description": "",
+            "method": "GET",
+            "endpoint": "petstore.swagger.io/v2/user/logout",
+            "params": [],
+            "headers": [],
+            "auth": {
+              "authType": "none",
+              "authActive": true
+            },
+            "body": {
+              "contentType": null,
+              "body": null
+            },
+            "preRequestScript": "",
+            "testScript": "pw.expect(response.status).toBe(200);",
+            "requestVariables": [],
+            "responses": {
+              "successful operation": {
+                "name": "successful operation",
+                "status": "OK",
+                "code": 200,
+                "headers": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "description": "",
+                    "active": true
+                  }
+                ],
+                "body": "",
+                "originalRequest": {
+                  "v": "6",
+                  "name": "logoutUser",
+                  "auth": {
+                    "authType": "none",
+                    "authActive": true
+                  },
+                  "body": {
+                    "contentType": null,
+                    "body": null
+                  },
+                  "endpoint": "petstore.swagger.io/v2/user/logout",
+                  "params": [],
+                  "headers": [],
+                  "method": "GET",
+                  "requestVariables": []
+                }
+              }
+            }
+          },
+          {
+            "v": "17",
+            "_ref_id": "req_mkqvrrmo_1a27f9c6-d9bb-4523-a532-8e5b22a212ac",
+            "name": "createUsersWithArrayInput",
+            "description": "",
+            "method": "POST",
+            "endpoint": "petstore.swagger.io/v2/user/createWithArray",
+            "params": [],
+            "headers": [],
+            "auth": {
+              "authType": "none",
+              "authActive": true
+            },
+            "body": {
+              "contentType": "application/json",
+              "body": "[\n  {\n    \"id\": 92,\n    \"username\": \"behest\",\n    \"firstName\": \"tenant\",\n    \"lastName\": \"director\",\n    \"email\": \"interviewer\",\n    \"password\": \"tentacle\",\n    \"phone\": \"thorn\",\n    \"userStatus\": 16\n  }\n]"
+            },
+            "preRequestScript": "",
+            "testScript": "pw.expect(response.status).toBe(200);",
+            "requestVariables": [],
+            "responses": {
+              "successful operation": {
+                "name": "successful operation",
+                "status": "OK",
+                "code": 200,
+                "headers": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "description": "",
+                    "active": true
+                  }
+                ],
+                "body": "",
+                "originalRequest": {
+                  "v": "6",
+                  "name": "createUsersWithArrayInput",
+                  "auth": {
+                    "authType": "none",
+                    "authActive": true
+                  },
+                  "body": {
+                    "contentType": "application/json",
+                    "body": "[\n  {\n    \"id\": 58,\n    \"username\": \"skean\",\n    \"firstName\": \"challenge\",\n    \"lastName\": \"dime\",\n    \"email\": \"paintwork\",\n    \"password\": \"lay\",\n    \"phone\": \"overheard\",\n    \"userStatus\": 86\n  }\n]"
+                  },
+                  "endpoint": "petstore.swagger.io/v2/user/createWithArray",
+                  "params": [],
+                  "headers": [],
+                  "method": "POST",
+                  "requestVariables": []
+                }
+              }
+            }
+          },
+          {
+            "v": "17",
+            "_ref_id": "req_mkqvrrmp_63ed5a27-d3df-4cb4-a4e8-6a7b91d32051",
+            "name": "createUser",
+            "description": "This can only be done by the logged in user.",
+            "method": "POST",
+            "endpoint": "petstore.swagger.io/v2/user",
+            "params": [],
+            "headers": [],
+            "auth": {
+              "authType": "none",
+              "authActive": true
+            },
+            "body": {
+              "contentType": "application/json",
+              "body": "{\n  \"id\": 1,\n  \"username\": \"brook\",\n  \"firstName\": \"disappointment\",\n  \"lastName\": \"mainstream\",\n  \"email\": \"presume\",\n  \"password\": \"flight\",\n  \"phone\": \"meal\",\n  \"userStatus\": 6\n}"
+            },
+            "preRequestScript": "",
+            "testScript": "pw.expect(response.status).toBe(200);",
+            "requestVariables": [],
+            "responses": {
+              "successful operation": {
+                "name": "successful operation",
+                "status": "OK",
+                "code": 200,
+                "headers": [
+                  {
+                    "key": "content-type",
+                    "value": "application/json",
+                    "description": "",
+                    "active": true
+                  }
+                ],
+                "body": "",
+                "originalRequest": {
+                  "v": "6",
+                  "name": "createUser",
+                  "auth": {
+                    "authType": "none",
+                    "authActive": true
+                  },
+                  "body": {
+                    "contentType": "application/json",
+                    "body": "{\n  \"id\": 99,\n  \"username\": \"pomelo\",\n  \"firstName\": \"stitcher\",\n  \"lastName\": \"whale\",\n  \"email\": \"exploration\",\n  \"password\": \"skeleton\",\n  \"phone\": \"plugin\",\n  \"userStatus\": 4\n}"
+                  },
+                  "endpoint": "petstore.swagger.io/v2/user",
+                  "params": [],
+                  "headers": [],
+                  "method": "POST",
+                  "requestVariables": []
+                }
+              }
+            }
+          }
+        ],
+        "folders": [],
+        "auth": {
+          "authType": "inherit",
+          "authActive": true
+        },
+        "headers": [],
+        "variables": [],
+        "_ref_id": "coll_mkqvrrn1_d1dff335-d6c0-491f-a63c-390a0c6cffc2"
+      }
+    ],
+    "requests": [],
+    "auth": {
+      "authType": "inherit",
+      "authActive": true
+    },
+    "headers": [],
+    "variables": [],
+    "description": "This is a sample server Petstore server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, you can use the api key `special-key` to test the authorization filters.",
+    "_ref_id": "coll_mkqvrrn1_d83520cf-dc9b-4465-b3aa-22c7d38723ba"
+  }
+]
