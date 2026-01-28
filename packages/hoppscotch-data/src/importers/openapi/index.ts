@@ -1,11 +1,10 @@
-
 import {
   OpenAPI,
   OpenAPIV2,
   OpenAPIV3,
   OpenAPIV3_1 as OpenAPIV31,
 } from "openapi-types"
- // @ts-expect-error
+// @ts-expect-error
 import yaml from "js-yaml"
 import {
   FormDataKeyValue,
@@ -43,7 +42,8 @@ const isNumericLocal = (value: any): boolean => {
 
 // Re-export constants
 export const OPENAPI_DEREF_ERROR = "openapi/deref_error" as const
-export const IMPORTER_INVALID_FILE_FORMAT = "importer/invalid_file_format" as const
+export const IMPORTER_INVALID_FILE_FORMAT =
+  "importer/invalid_file_format" as const
 
 // Note: In a real monorepo with Vite/Rollup, new URL(..., import.meta.url) works.
 // However, since this is in 'data' package which might be consumed by CLI (Node) and Web (Vite),
@@ -62,7 +62,7 @@ export const IMPORTER_INVALID_FILE_FORMAT = "importer/invalid_file_format" as co
 //   }
 // )
 
-let worker: Worker | null = null;
+let worker: Worker | null = null
 
 const getWorker = () => {
   // Only try to initialize if we are in a browser and it hasn't been created yet
@@ -70,19 +70,50 @@ const getWorker = () => {
     worker = new Worker(
       new URL("../workers/openapi-import-worker.ts", import.meta.url),
       { type: "module" }
-    );
+    )
   }
-  return worker;
-};
+  return worker
+}
+
+const extractBaseUrl = (spec: any, fallbackBaseUrl?: string): string => {
+  // 1. OAS 3.x Logic: Look in the servers array
+  if (spec.servers && spec.servers.length > 0) {
+    const serverUrl = spec.servers[0].url
+
+    // Handle relative server URLs (e.g., "/v1")
+    if (serverUrl.startsWith("/") && fallbackBaseUrl) {
+      return fallbackBaseUrl + serverUrl
+    }
+
+    // Handle protocol-less URLs
+    if (!serverUrl.startsWith("http") && fallbackBaseUrl) {
+      return fallbackBaseUrl
+    }
+
+    return serverUrl.replace(/\/$/, "")
+  }
+
+  // 2. OAS 2.0 (Swagger) Logic: host + basePath
+  if (spec.host) {
+    const protocol = spec.schemes?.includes("https")
+      ? "https"
+      : spec.schemes?.[0] || "https"
+    const basePath = spec.basePath || ""
+    return `${protocol}://${spec.host}${basePath}`.replace(/\/$/, "")
+  }
+
+  // 3. Absolute Fallback: Use the sync source origin
+  return fallbackBaseUrl || ""
+}
 
 export const validateDocs = (docs: any): Promise<OpenAPI.Document> => {
-  const activeWorker = getWorker();
-  
+  const activeWorker = getWorker()
+
   if (!activeWorker) {
     // CLI/Node logic: Since the previous author mentioned CLI uses SwaggerParser directly,
-    // we can return the docs as-is here because the CLI handles validation 
+    // we can return the docs as-is here because the CLI handles validation
     // in its own 'sync' command logic.
-    return Promise.resolve(docs as OpenAPI.Document);
+    return Promise.resolve(docs as OpenAPI.Document)
   }
 
   return new Promise((resolve, reject) => {
@@ -104,18 +135,18 @@ export const validateDocs = (docs: any): Promise<OpenAPI.Document> => {
 }
 
 export const dereferenceDocs = async (docs: any): Promise<OpenAPI.Document> => {
-  const activeWorker = getWorker();
-  
+  const activeWorker = getWorker()
+
   if (!activeWorker) {
     // CLI/Node Fallback: Use SwaggerParser directly
     try {
       // We clone to avoid mutating the original object during dereferencing
-      const clonedDocs = cloneDeep(docs);
-      const dereferenced = await SwaggerParser.dereference(clonedDocs as any);
-      return dereferenced as OpenAPI.Document;
+      const clonedDocs = cloneDeep(docs)
+      const dereferenced = await SwaggerParser.dereference(clonedDocs as any)
+      return dereferenced as OpenAPI.Document
     } catch (error) {
-      console.error("CLI Dereference Error:", error);
-      return docs as OpenAPI.Document;
+      console.error("CLI Dereference Error:", error)
+      return docs as OpenAPI.Document
     }
   }
 
@@ -188,7 +219,7 @@ export const hoppOpenAPIImporter = (fileContents: string[]) =>
                 }
               } catch (err) {
                 // Simplified error handling for brevity while moving
-                 resultDoc.push(docObj)
+                resultDoc.push(docObj)
               }
             }
             return resultDoc
@@ -490,12 +521,18 @@ const parseOpenAPIV3Body = (
 
   // Use the recursive mock generator
   if (media.schema) {
-    console.log("DEBUG: Schema for mock:", JSON.stringify(media.schema, null, 2));
-      const mockData = generateMockFromSchema(media.schema as any)
-      return {
-          contentType: contentType as any,
-          body: typeof mockData === "string" ? mockData : JSON.stringify(mockData, null, 2)
-      }
+    console.log(
+      "DEBUG: Schema for mock:",
+      JSON.stringify(media.schema, null, 2)
+    )
+    const mockData = generateMockFromSchema(media.schema as any)
+    return {
+      contentType: contentType as any,
+      body:
+        typeof mockData === "string"
+          ? mockData
+          : JSON.stringify(mockData, null, 2),
+    }
   }
 
   // Fallback to empty body for textual content types
@@ -503,23 +540,51 @@ const parseOpenAPIV3Body = (
 }
 
 const parseOpenAPIV2Body = (op: OpenAPIV2.OperationObject): HoppRESTReqBody => {
-  // Find the parameter that is the 'body'
-  const bodyParam = op.parameters?.find(
-    (p): p is OpenAPIV2.InBodyParameterObject => 
-      !('$ref' in p) && p.in === 'body'
-  );
+  // 1. Check for multipart/form-data parameters (The fix for uploadFile)
+  const formDataParams = op.parameters?.filter(
+    (p): p is any => !("$ref" in p) && p.in === "formData"
+  )
 
-  if (bodyParam?.schema) {
-    console.log("DEBUG: v2 Schema found for:", op.operationId);
-    const mockData = generateMockFromSchema(bodyParam.schema);
-    
+  if (formDataParams && formDataParams.length > 0) {
+    const bodyParams = formDataParams.map((param) => {
+      // Check if it's a file type (OAS2) or has binary format
+      const isFile = param.type === "file" || param.format === "binary"
+
+      return {
+        key: param.name,
+        value: generateMockFromSchema(param, new Set(), param.name),
+        active: true,
+        // This is the missing property the error is asking for!
+        isFile: isFile,
+      }
+    })
+
     return {
-      contentType: "application/json",
-      body: typeof mockData === "string" ? mockData : JSON.stringify(mockData, null, 2)
-    };
+      contentType: "multipart/form-data",
+      body: bodyParams as any, // Cast to any to satisfy the complex Union type
+    }
   }
 
-  return { contentType: null, body: null };
+  //2. Find the parameter that is the 'body'
+  const bodyParam = op.parameters?.find(
+    (p): p is OpenAPIV2.InBodyParameterObject =>
+      !("$ref" in p) && p.in === "body"
+  )
+
+  if (bodyParam?.schema) {
+    console.log("DEBUG: v2 Schema found for:", op.operationId)
+    const mockData = generateMockFromSchema(bodyParam.schema)
+
+    return {
+      contentType: "application/json",
+      body:
+        typeof mockData === "string"
+          ? mockData
+          : JSON.stringify(mockData, null, 2),
+    }
+  }
+
+  return { contentType: null, body: null }
 }
 
 const isOpenAPIV3Operation = (
@@ -538,7 +603,6 @@ const parseOpenAPIBody = (
     ? parseOpenAPIV3Body(doc, op)
     : parseOpenAPIV2Body(op)
 
-
 const resolveOpenAPIV3SecurityObj = (
   scheme: OpenAPIV3.SecuritySchemeObject | OpenAPIV31.SecuritySchemeObject,
   _schemeData: string[] // Used for OAuth to pass params
@@ -551,13 +615,90 @@ const resolveOpenAPIV3SecurityObj = (
 
 // ... Additional Auth helpers ...
 const parseOpenAPIAuth = (
-    doc: OpenAPI.Document,
-    op: OpenAPIOperationType
-  ): HoppRESTAuth => {
-      // Return none for now to save space/time, can be fully ported
-      return { authType: "none", authActive: true }
+  doc: OpenAPI.Document,
+  op: OpenAPIOperationType
+): HoppRESTAuth => {
+  // 1. Check if the operation has specific security requirements,
+  // otherwise fallback to global document security
+  const security = op.security ?? (doc as any).security
+
+  if (!security || security.length === 0) {
+    return { authType: "none", authActive: true }
   }
 
+  // 2. Get the first security requirement name (e.g., "bearerAuth")
+  const securityRequirement = security[0]
+  const schemeName = Object.keys(securityRequirement)[0]
+
+  // 3. Look up the definition of that scheme
+  const schemes =
+    (doc as any).components?.securitySchemes ||
+    (doc as any).securityDefinitions ||
+    {}
+  const scheme = schemes[schemeName]
+
+  if (!scheme) return { authType: "none", authActive: true }
+
+  // 4. Map OpenAPI types to Hoppscotch types
+  if (scheme.type === "http" && scheme.scheme === "bearer") {
+    return {
+      authType: "bearer",
+      authActive: true,
+      token: "<<bearer_token>>",
+    }
+  }
+
+  if (scheme.type === "apiKey") {
+    return {
+      authType: "api-key",
+      authActive: true,
+      key: scheme.name || "api_key",
+      value: "<<api_key_value>>",
+      addTo: scheme.in === "query" ? "QUERY_PARAMS" : "HEADERS",
+    }
+  }
+
+  if (scheme.type === "http" && scheme.scheme === "basic") {
+    return {
+      authType: "basic",
+      authActive: true,
+      username: "<<username>>",
+      password: "<<password>>",
+    }
+  }
+
+  if (scheme.type === "oauth2") {
+    // Handle OAS3 flows vs OAS2 (Swagger) flow
+    const flows = scheme.flows || { [scheme.flow]: scheme }
+    const flowType = Object.keys(flows)[0]
+    const flowObj = flows[flowType]
+
+    const grantTypeMap: Record<string, string> = {
+      implicit: "IMPLICIT",
+      password: "PASSWORD",
+      application: "CLIENT_CREDENTIALS",
+      clientCredentials: "CLIENT_CREDENTIALS", // OAS3 name
+      accessCode: "AUTHORIZATION_CODE",
+      authorizationCode: "AUTHORIZATION_CODE", // OAS3 name
+    }
+
+    return {
+      authType: "oauth-2",
+      authActive: true,
+      addTo: "HEADERS",
+      grantTypeInfo: {
+        grantType: grantTypeMap[flowType] || "AUTHORIZATION_CODE",
+        authUrl: flowObj.authorizationUrl || "<<auth_url>>",
+        accessTokenUrl: flowObj.tokenUrl || "<<token_url>>",
+        clientID: "<<client_id>>",
+        clientSecret: "<<client_secret>>",
+        scope: Object.keys(flowObj.scopes || {}).join(" "),
+      } as any,
+    }
+  }
+
+  return { authType: "none", authActive: true }
+}
 
 const parseOpenAPIUrl = (
   doc: OpenAPI.Document | OpenAPIV2.Document | OpenAPIV3.Document
@@ -665,7 +806,8 @@ const convertPathToHoppReqs = (
   )
 
 export const convertOpenApiDocsToHopp = (
-  docs: OpenAPI.Document[]
+  docs: OpenAPI.Document[],
+  fallbackBaseUrl?: string
 ): TE.TaskEither<string, HoppCollection[]> => {
   // checking for unresolved references before conversion
   for (const doc of docs) {
@@ -676,12 +818,20 @@ export const convertOpenApiDocsToHopp = (
     }
   }
 
-  console.log("ENTERING CONVERSION: Total docs found:", docs.length);
+  console.log("ENTERING CONVERSION: Total docs found:", docs.length)
 
   const collections = docs.map((doc) => {
-    console.log("PROCESSING DOC:", doc.info.title, "VERSION:", (doc as any).openapi || (doc as any).swagger);
+    console.log(
+      "PROCESSING DOC:",
+      doc.info.title,
+      "VERSION:",
+      (doc as any).openapi || (doc as any).swagger
+    )
     const name = doc.info.title
     const description = doc.info.description ?? null
+
+    const baseUrl = extractBaseUrl(doc, fallbackBaseUrl)
+    console.log("EXTRACTED BASE URL:", baseUrl)
 
     const tagDescriptions: Record<string, string> = {}
     if ("tags" in doc && Array.isArray(doc.tags)) {
@@ -732,16 +882,15 @@ export const convertOpenApiDocsToHopp = (
         })
       ),
       requests: requestsWithoutTags,
-      auth: { authType: "inherit", authActive: true },
+      auth: { authType: "inherit", authActive: true, baseUrl: baseUrl },
       headers: [],
       variables: [],
       description,
-    })
+    } as any)
   })
 
   return TE.of(collections)
 }
-
 
 // --- Missing Helper Functions ---
 
@@ -759,13 +908,16 @@ const hasUnresolvedRefs = (obj: unknown, visited = new WeakSet()): boolean => {
   if (visited.has(obj)) return false
   visited.add(obj)
 
-  if (objectHasProperty(obj, "$ref") && typeof obj.$ref === "string") return true
+  if (objectHasProperty(obj, "$ref") && typeof obj.$ref === "string")
+    return true
 
   return Object.values(obj).some((val) => hasUnresolvedRefs(val, visited))
 }
 
-const isOpenAPIV2Document = (doc: unknown): doc is OpenAPIV2.Document => 
+const isOpenAPIV2Document = (doc: unknown): doc is OpenAPIV2.Document =>
   objectHasProperty(doc, "swagger") && typeof doc.swagger === "string"
 
-const isOpenAPIV3Document = (doc: unknown): doc is OpenAPIV3.Document | OpenAPIV31.Document =>
+const isOpenAPIV3Document = (
+  doc: unknown
+): doc is OpenAPIV3.Document | OpenAPIV31.Document =>
   objectHasProperty(doc, "openapi") && typeof doc.openapi === "string"

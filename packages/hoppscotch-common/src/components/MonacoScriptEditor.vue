@@ -24,7 +24,7 @@ import preRequestTypes from "~/types/pre-request.d.ts?raw"
 
 const props = withDefaults(
   defineProps<{
-    modelValue: string
+    modelValue?: string
     type: "pre-request" | "post-request"
   }>(),
   {

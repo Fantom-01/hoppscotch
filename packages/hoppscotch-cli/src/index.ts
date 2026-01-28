@@ -6,6 +6,7 @@ import { version } from "../package.json";
 import { test } from "./commands/test";
 import { syncCmd } from "./commands/sync";
 import { handleError } from "./handlers/error";
+import { runPulseCheck } from "./commands/pulse";
 
 const accent = chalk.greenBright;
 
@@ -48,6 +49,13 @@ program.exitOverride().configureOutput({
  * * CLI Commands
  */
 program.addCommand(syncCmd);
+
+program
+  .command("pulse")
+  .description("Autonomously test all endpoints using self-healed mock data")
+  .action(async () => {
+    await runPulseCheck();
+  });
 
 program
   .command("test")
